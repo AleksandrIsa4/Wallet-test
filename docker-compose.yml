@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  wallet-server:
+    build: .
+    container_name: wallet-server
+    ports:
+      - "8080:8080"
+    depends_on:
+      - wallet-db
+    restart: on-failure
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://wallet-db:5432/wallet-user
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+
+  wallet-db:
+    image: postgres:13.7-alpine
+    container_name: wallet-db
+    ports:
+      - "6541:5432"
+    restart: on-failure
+    volumes:
+      - /var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=wallet-user
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+
+  pgadmin4:
+    image: dpage/pgadmin4
+    container_name: pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
