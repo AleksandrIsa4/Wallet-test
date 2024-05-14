@@ -1,4 +1,4 @@
-При запуске TaskServer на адресе http://localhost:8080/swagger-ui/index.html# будет доступен swagger с существующими эндпоинтами.
+При запуске wallet-server на адресе http://localhost:8080/swagger-ui/index.html# будет доступен swagger с существующими эндпоинтами.
 
 Описание эндпоинтов есть в swagger.
 
