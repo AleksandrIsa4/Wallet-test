@@ -1,7 +1,7 @@
 package org.example.service;
 
 import org.example.entity.Wallet;
-import org.example.model.WalletDto;
+import org.example.dto.WalletDto;
 
 public interface WalletService {
 

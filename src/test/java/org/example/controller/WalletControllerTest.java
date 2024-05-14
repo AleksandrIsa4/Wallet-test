@@ -3,9 +3,10 @@ package org.example.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.example.dto.WalletResponse;
 import org.example.entity.Wallet;
 import org.example.model.OperationType;
-import org.example.model.WalletDto;
+import org.example.dto.WalletDto;
 import org.example.service.WalletService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -76,12 +77,12 @@ class WalletControllerTest {
                         .content(objectMapper.writeValueAsString(walletDto2)))
                 .andExpect(status().is2xxSuccessful())
                 .andReturn();
-        Wallet resultWallet1 = objectMapper.readValue(
+        WalletResponse resultWallet1 = objectMapper.readValue(
                 resultStatusDone1.getResponse().getContentAsString(StandardCharsets.UTF_8),
-                Wallet.class);
-        Wallet resultWallet2 = objectMapper.readValue(
+                WalletResponse.class);
+        WalletResponse resultWallet2 = objectMapper.readValue(
                 resultStatusDone2.getResponse().getContentAsString(StandardCharsets.UTF_8),
-                Wallet.class);
+                WalletResponse.class);
         Assertions.assertAll(
                 () -> Assertions.assertEquals(resultWallet1.getTotal(), 200),
                 () -> Assertions.assertEquals(resultWallet2.getTotal(), 100),
@@ -126,9 +127,9 @@ class WalletControllerTest {
                         .get(urlGet))
                 .andExpect(status().is2xxSuccessful())
                 .andReturn();
-        Wallet resultWallet = objectMapper.readValue(
+        WalletResponse resultWallet = objectMapper.readValue(
                 resultStatusDone.getResponse().getContentAsString(StandardCharsets.UTF_8),
-                Wallet.class);
+                WalletResponse.class);
         Assertions.assertAll(
                 () -> Assertions.assertEquals(resultWallet.getTotal(), 777),
                 () -> Assertions.assertEquals(resultWallet.getValletId(), walletGet.getValletId())

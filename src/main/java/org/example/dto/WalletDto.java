@@ -1,9 +1,10 @@
-package org.example.model;
+package org.example.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Positive;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.example.model.OperationType;
 
 @NoArgsConstructor
 @AllArgsConstructor
